@@ -1,6 +1,8 @@
 package com.august.weekone;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class TreeTravel {
@@ -9,6 +11,8 @@ public class TreeTravel {
 		Node node = new Node(1);
 		constructTree(node);
 		printTree(node);
+		List<List<Integer>> res = levelOrder(node);
+		System.out.println(res);
 //		printNAryTree(node);
 	}
 
@@ -50,6 +54,30 @@ public class TreeTravel {
 			}
 			System.out.println();
 		}
+	}
+
+	private static List<List<Integer>> levelOrder(Node root) {
+		List<List<Integer>> result = new ArrayList<>();
+
+		if (root == null)
+			return result;
+
+		Queue<Node> current = new LinkedList<>();
+		current.offer(root);
+		while (!current.isEmpty()) {
+			List<Integer> cur = new ArrayList<>();
+			int size = current.size();
+			for (int i = 0; i < size; i++) {
+				Node temp = current.poll();
+				cur.add(temp.val);
+				for (Node child : temp.children) {
+					current.offer(child);
+				}
+			}
+			result.add(cur);
+		}
+
+		return result;
 	}
 
 }
