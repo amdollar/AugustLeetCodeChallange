@@ -24,11 +24,8 @@ public class MinimumWindowSubstring {
 			dictT.put(t.charAt(i), count + 1);
 		}
 
-		// Number of unique characters in t, which need to be present in the desired
-		// window.
 		int required = dictT.size();
 
-		// Left and Right pointer
 		int l = 0, r = 0;
 
 		// formed is used to keep track of how many unique characters in t
